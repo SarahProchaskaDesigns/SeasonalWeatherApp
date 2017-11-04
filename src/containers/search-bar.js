@@ -1,40 +1,75 @@
 import React, { Component } from 'react';
-import { DropdownButton, SplitButton, MenuItem } from 'react-bootstrap'
+import { DropdownButton, SplitButton, MenuItem } from 'react-bootstrap';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+// IMPORT OTHER FILES
+import testAPI from '../actions/index';
+import ISOCountryCodes from '../components/wunder-to-iso';
+import CountryNames from '../components/iso-country-names';
+import { fetchWeather } from '../actions/index';
 
 class SearchBar extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
+            currentCity: '',
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             activeMonth: 'Choose a Month...',
-            currentCity: ''
+            activeNumber: 0,
+            states: ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"],
+            activeState: 'Choose a State...',
         }
     }
-    changeActiveMonth(selectedMonth){
-        this.setState({
-            activeMonth: selectedMonth
-        })
+    changeActive(selectedItem, typeItem, number) {
+        if (typeItem === "months") {
+            if(number <= 9){
+                number = `0${number}`
+            }
+            this.setState({
+                activeMonth: selectedItem,
+                activeNumber: number
+            })
+        }
+        if (typeItem === "states") {
+            this.setState({
+                activeState: selectedItem,
+            })
+        }
+        
+
     }
-    enterNewCity(e){
+    enterNewCity(e) {
         console.log(e.target.value)
         this.setState({
             currentCity: e.target.value
         })
     }
-    submitCityAndMonth(e){
+    submitCityAndMonth(e) {
         e.preventDefault();
-        
-        
+        // console.log(`Current State is: ${this.state.currentCity} ${this.state.activeState} ${this.state.activeNumber}`)
+        this.props.fetchWeather(this.state.currentCity, this.state.activeState, this.state.activeNumber)
     }
+
     render() {
-        const createMonths = this.state.months.map((month) => {
-            return <MenuItem key={month} onSelect={()=>this.changeActiveMonth(month)}>{month}</MenuItem>
-        })
+        const createDropDown = (arrItems, type) => {
+            // console.log(arrItems)
+            var count = 0;
+            var newArray = arrItems.map((item) => {
+                count += 1;
+                // console.log(item, count)
+                var number = count
+                return <MenuItem key={item}  onSelect={() => this.changeActive(item, type, number)}>{item}</MenuItem>
+            })
+            return newArray
+        }
+
         return (
             <div>
                 <form onSubmit={(event) => this.submitCityAndMonth(event)}>
-                    <input placeholder="City..." value={this.state.currentCity} onChange={(event)=>{this.enterNewCity(event)}}/>
-                    <SplitButton title={this.state.activeMonth} id='months-dropdown-menu'>{createMonths}</SplitButton>
+                    <input placeholder="City..." value={this.state.currentCity} onChange={(event) => { this.enterNewCity(event) }} />
+                    <SplitButton title={this.state.activeState} id='months-dropdown-menu'>{createDropDown(this.state.states, 'states')}</SplitButton>
+                    <SplitButton title={this.state.activeMonth} id='months-dropdown-menu'>{createDropDown(this.state.months, 'months')}</SplitButton>
                     <button type="submit" >Search</button>
                 </form>
             </div>
@@ -42,9 +77,9 @@ class SearchBar extends Component {
     }
 }
 
-function mapDispatchtoProps(dispatch){
+function mapDispatchtoProps(dispatch) {
     return (
-        bindActionCreators({fetchWeather}, dispatch)
+        bindActionCreators({ fetchWeather }, dispatch)
     )
 }
-export default SearchBar;
+export default connect(null, mapDispatchtoProps)(SearchBar);
