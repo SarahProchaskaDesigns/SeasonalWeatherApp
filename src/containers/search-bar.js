@@ -40,7 +40,7 @@ class SearchBar extends Component {
 
     }
     enterNewCity(e) {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         this.setState({
             currentCity: e.target.value
         })
@@ -48,7 +48,7 @@ class SearchBar extends Component {
     submitCityAndMonth(e) {
         e.preventDefault();
         // console.log(`Current State is: ${this.state.currentCity} ${this.state.activeState} ${this.state.activeNumber}`)
-        this.props.fetchWeather(this.state.currentCity, this.state.activeState, this.state.activeNumber)
+        this.props.fetchWeather(this.state.currentCity, this.state.activeState, this.state.activeNumber, this.state.activeMonth)
     }
 
     render() {
