@@ -1,4 +1,3 @@
-//THIS IS A TEST!!!
 import axios from 'axios';
 import { API_KEY, Apple } from '../../config';
 
