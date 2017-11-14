@@ -1,4 +1,4 @@
-// Wunderground Code	ISO Code
+// Wunderground Code:	ISO Code
 
 var ISOCountryCodes = {
 AH: 'AF',

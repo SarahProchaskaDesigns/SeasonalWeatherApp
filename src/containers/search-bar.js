@@ -14,6 +14,10 @@ class SearchBar extends Component {
         super(props)
         this.state = {
             currentCity: '',
+            countries: CountryNames,
+            activeCountry: 'United States',
+            activeISO: 'US',
+            activeWunderCode: 'US',
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             activeMonth: 'Choose a Month...',
             activeNumber: 0,
@@ -36,8 +40,32 @@ class SearchBar extends Component {
                 activeState: selectedItem,
             })
         }
-        
+        if (typeItem === "countries") {
+            var codes = this.getWunderCode(selectedItem);
 
+            this.setState({
+                activeCountry: selectedItem,
+                activeISO: codes.activeISO,
+                activeWunderCode: codes.activeWunderCode
+            })
+        }
+        
+    }
+    getWunderCode(singleCountryName){
+       var ISOcountryObj = CountryNames.find(function(singleCountry){
+           return singleCountry.name === singleCountryName
+        })
+        var ISOCountryCode = ISOcountryObj.code
+        console.log(ISOcountryObj)
+        console.log(ISOCountryCodes)
+        console.log(ISOCountryCode)
+        var wunderCode = ISOCountryCodes[ISOCountryCode]
+        
+        console.log(wunderCode)
+        return {
+            activeISO: ISOCountryCode,
+            activeWunderCode: wunderCode,
+        }
     }
     enterNewCity(e) {
         // console.log(e.target.value)
@@ -48,8 +76,10 @@ class SearchBar extends Component {
     submitCityAndMonth(e) {
         e.preventDefault();
         // console.log(`Current State is: ${this.state.currentCity} ${this.state.activeState} ${this.state.activeNumber}`)
-        this.props.fetchWeather(this.state.currentCity, this.state.activeState, this.state.activeNumber, this.state.activeMonth)
+        console.log(this.state.currentCity, this.state.activeState, this.state.activeCountry, this.state.activeWunderCode, this.state.activeNumber, this.state.activeMonth)
+        this.props.fetchWeather(this.state.currentCity, this.state.activeState, this.state.activeCountry, this.state.activeWunderCode, this.state.activeNumber, this.state.activeMonth)
     }
+  
 
     render() {
         const createDropDown = (arrItems, type) => {
@@ -63,20 +93,28 @@ class SearchBar extends Component {
             })
             return newArray
         }
+        const selectivelyRenderStates = () => {
+            if(this.state.activeCountry === "United States"){
+               return <SplitButton title={this.state.activeState} id='months-dropdown-menu'>{createDropDown(this.state.states, 'states')}</SplitButton>
+            //    return <div>This should be the state dropdown</div>
+        }
+    }
 
         return (
             <div>
                 <form onSubmit={(event) => this.submitCityAndMonth(event)}>
+                    <SplitButton title={this.state.activeCountry} id='months-dropdown-menu'>{createDropDown(this.state.countries.map((countryObj) => 
+                    countryObj.name), 'countries')}</SplitButton>
+                    {selectivelyRenderStates()}
                     <input placeholder="City..." value={this.state.currentCity} onChange={(event) => { this.enterNewCity(event) }} />
-                    <SplitButton title={this.state.activeState} id='months-dropdown-menu'>{createDropDown(this.state.states, 'states')}</SplitButton>
                     <SplitButton title={this.state.activeMonth} id='months-dropdown-menu'>{createDropDown(this.state.months, 'months')}</SplitButton>
                     <button type="submit" >Search</button>
                 </form>
             </div>
         )
     }
-}
 
+}
 function mapDispatchtoProps(dispatch) {
     return (
         bindActionCreators({ fetchWeather }, dispatch)
