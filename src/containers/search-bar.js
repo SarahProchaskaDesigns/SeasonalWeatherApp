@@ -101,7 +101,7 @@ class SearchBar extends Component {
     }
 
         return (
-            <div>
+            <div id="search-bar">
                 <form onSubmit={(event) => this.submitCityAndMonth(event)}>
                     <SplitButton title={this.state.activeCountry} id='months-dropdown-menu'>{createDropDown(this.state.countries.map((countryObj) => 
                     countryObj.name), 'countries')}</SplitButton>

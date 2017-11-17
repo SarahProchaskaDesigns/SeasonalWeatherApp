@@ -26,7 +26,7 @@ class WeatherList extends Component {
     render() {
         // console.log(this.props.weather)
         return (
-            <div>
+            <div id="weather-list">
                 <div className="table-title">
                             <div className="pointer" onClick={() => this.props.sortCity()}>City</div>
                             <div className="pointer">Country</div>

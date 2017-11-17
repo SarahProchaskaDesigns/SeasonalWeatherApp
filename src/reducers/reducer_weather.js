@@ -60,11 +60,16 @@ export default function (state = [], action) {
             console.log(isDuplicate)
             if (!isDuplicate) {
                 // console.log()
-                action.payload.data.trip.myData = {};
-                action.payload.data.trip.myData.city_name = action.meta.city_name
-                action.payload.data.trip.myData.country_name = action.meta.country_name
-                action.payload.data.trip.myData.month_name = action.meta.month_name
-                return state.concat([action.payload.data.trip])
+                // var position = {lat: action.payload[1].data.current_observation.observation_location.latitude, lng: action.payload[1].data.current_observation.observation_location.longitude}
+                action.payload[0].data.trip.myData = {};
+                // action.payload[0].data.trip.myData.marker = {};
+                action.payload[0].data.trip.myData.city_name = action.payload[1].data.current_observation.observation_location.city;
+                action.payload[0].data.trip.myData.longitude = action.payload[1].data.current_observation.observation_location.longitude;
+                action.payload[0].data.trip.myData.latitude = action.payload[1].data.current_observation.observation_location.latitude;
+                action.payload[0].data.trip.myData.entered_city_name = action.meta.city_name
+                action.payload[0].data.trip.myData.country_name = action.meta.country_name
+                action.payload[0].data.trip.myData.month_name = action.meta.month_name
+                return state.concat([action.payload[0].data.trip])
             }
             return state
 

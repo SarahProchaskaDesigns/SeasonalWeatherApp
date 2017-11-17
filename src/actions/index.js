@@ -28,11 +28,20 @@ export function deleteCity(city, month){
 export function fetchWeather(city, state, countryName, countryCode, monthNumber, monthName){
     if(countryCode === "US"){
         var url = `${ROOT_URL}${MY_API_KEY}/planner_${monthNumber}01${monthNumber}30/q/US/${state}/${city}.json`;
+        var url2 = `${ROOT_URL}${MY_API_KEY}/conditions/q/US/${state}/${city}.json`;
     }else{
         var url = `${ROOT_URL}${MY_API_KEY}/planner_${monthNumber}01${monthNumber}30/q/${countryName}/${city}.json`;
+        var url2 = `${ROOT_URL}${MY_API_KEY}/conditions/q/${countryName}/${city}.json`;
     }
-    console.log(url)
-    const request = axios.get(url)
+    // console.log(url)
+    // const request = {
+    //         plannerRequest: axios.get(url),
+    //         conditionRequest: axios.get(url2)
+    //     };
+    // const request = axios.get(url)
+    const plannerRequest = axios.get(url);
+    const conditionRequest = axios.get(url2)
+    const request = Promise.all([plannerRequest, conditionRequest]);
     // console.log("Sent request is ", request)
     // console.log("City is: ", city)
 
@@ -45,6 +54,10 @@ export function fetchWeather(city, state, countryName, countryCode, monthNumber,
             month_name: monthName,
             },
         payload: request
+            // {
+            //     plannerRequest: plannerRequest,
+            //     conditionRequest: conditionRequest
+            // }
     }
 }
 
