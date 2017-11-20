@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import MapContainer from '../components/google-maps-container';
-// import GoogleMapMarker from '../components/google-map-marker'
-
-const ARC_DE_TRIOMPHE_POSITION = {
-    lat: 48.873947,
-    lng: 2.295038
-  };
-  
-  const EIFFEL_TOWER_POSITION = {
-    lat: 48.858608,
-    lng: 2.294471
-  };
 
   const DEFAULT_POSITION = {
     lat: 25.8136,
@@ -29,30 +17,30 @@ const ASIA_POSITION = {
     lat: 25.9288,
     lng: 92.9476
 }
-
-const testArr = [{
+const OCEANIA_POSITION = {
+    lat: -25.29539574,
+    lng: 133.13310289
+}
+const AFRICA_POSITION = {
+    lat: 4.3947,
+    lng: 18.5582
+}
+const MIDDLE_EAST_POSITION = {
+    lat: 29.5647968,
+    lng: 53.8671868
+}
+const SOUTH_AMERICA_POSITION = {
+    lat: -22.6820,
+    lng: -64
+}
+const CANADA_ALASKA_POSITION = {
     lat: 25.9288,
-    lng: 92.9476},
-    {
-        lat: 37.7098,
-        lng: -95.6975
-    },
-    {
-        lat: 46.6365,
-        lng: 14.3122
-    }
-]
+    lng: 92.9476
+}
 var allMarkers = [];
-//   var myMap = this.map = new google.maps.Map(this.refs.map, {
-//         center: EIFFEL_TOWER_POSITION,
-//         zoom: 16
-//       });
   class Map extends Component {
     constructor(props) {
       super(props);
-    //   this.panToArcDeTriomphe = this.panToArcDeTriomphe.bind(this);
-    // this.panToEurope = this.panToEurope.bind(this)
-    // this.panToLocation = this.panToLocation.bind(this)
     }
     
     componentDidMount() {
@@ -72,10 +60,6 @@ var allMarkers = [];
             console.log(allMarkers)
             return allMarkers
         })
-        // testArr.map((obj) =>{
-            
-        //     return this.renderMarkersTest(obj)
-        // })
     }
     clearMarkers() {
         for (var i = 0; i < allMarkers.length; i++) {
@@ -84,11 +68,6 @@ var allMarkers = [];
         }
         allMarkers = [];
     }
-    // panToEurope() {
-    //   console.log(this)
-    //   this.googleMap.setZoom(3)
-    //   this.googleMap.panTo(EUROPE_POSITION)
-    // }
     panToLocation(location, num) {
         console.log(this)
         this.googleMap.setZoom(num)
@@ -111,44 +90,18 @@ var allMarkers = [];
           maxWidth: 200
         });
 
-    
-
         var marker = new google.maps.Marker({
           position: position,
           map: this.googleMap,
           title: city.myData.city_name
         });
-        
-        // var i = 0;
-        // function random(){
-        //     window.markers[i].setMap(null);
-        // }
-        // i += 1
-        // random()
 
         marker.addListener('click', function() {
           infowindow.open(this.googleMap, marker);
         });
         
         return marker
-        // allMarkers.push(marker)
       }
-
-    //   renderMarkersTest(city) {
-    //     var position = city;
-
-    //     var marker = new google.maps.Marker({
-    //       position: position,
-    //       map: this.googleMap,
-    //       title: "Test"
-    //     });
-    //   }
-
-    //   deleteLastPin(){
-    //       testArr.pop()
-    //       console.log(testArr)
-    //       return testArr
-    //   }
 
     render() {
       const mapStyle = {
@@ -160,10 +113,14 @@ var allMarkers = [];
       return (
           <div>
         <div id="maping-buttons">
-            <button onClick={ () => this.panToLocation(DEFAULT_POSITION, 1)}>Go to World View</button>
-          <button onClick={ () => this.panToLocation(EUROPE_POSITION, 4)}>Go to Europe</button>
-          <button onClick={ () => this.panToLocation(UNITED_STATES_POSITION, 4)}>Go US</button>
-          <button onClick={ () => this.panToLocation(ASIA_POSITION, 3)}>Go Asia</button>
+            <button onClick={ () => this.panToLocation(DEFAULT_POSITION, 1)}>World View</button>
+          <button onClick={ () => this.panToLocation(EUROPE_POSITION, 4)}>Europe</button>
+          <button onClick={ () => this.panToLocation(UNITED_STATES_POSITION, 4)}>US</button>
+          <button onClick={ () => this.panToLocation(ASIA_POSITION, 3)}>Asia</button>
+          <button onClick={ () => this.panToLocation(AFRICA_POSITION, 3)}>Africa</button>
+          <button onClick={ () => this.panToLocation(OCEANIA_POSITION, 3)}>Oceania</button>
+          <button onClick={ () => this.panToLocation(SOUTH_AMERICA_POSITION, 3)}>South America</button>
+          <button onClick={ () => this.panToLocation(MIDDLE_EAST_POSITION, 4)}>Middle East</button>
           </div>
           <div ref="googleMap" id="map">I should be a map!</div>
         </div>
@@ -179,6 +136,3 @@ var allMarkers = [];
 
 export default connect(mapStateToProps)(Map);
   
-
-
-// export default Map;
