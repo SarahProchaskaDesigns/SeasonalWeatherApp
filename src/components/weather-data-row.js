@@ -19,8 +19,11 @@ class WeatherDataRow extends Component{
     render(){
         var city = this.props.city
         return(
-            <div>
-                <div className="table-row" onClick={() => this.toggle()}>
+            <div className={city.myData.row % 2 ? 'white' : 'grey'}>
+                
+                    <div className='table-row pointer' onClick={() => this.toggle()}>
+                
+                
                         <WeatherData key={city.myData.city_name} data={city.myData.city_name} />
                         <WeatherData key={city.myData.country_name} data={city.myData.country_name} />
                         <WeatherData key={city.myData.month_name} data={city.myData.month_name} />
@@ -28,9 +31,9 @@ class WeatherDataRow extends Component{
                         <WeatherData key={city.temp_low.avg.F} data={city.temp_low.avg.F} />
                         <WeatherData key={city.airport_code} data={parseInt(city.chance_of.chanceofsnowday.percentage) + parseInt(city.chance_of.chanceofrainday.percentage)} />
                         
-                            <button 
+                            <div className="pointer delete-city-button" 
                                 onClick={(e) => this.props.closeTableRow(city.myData.city_name, city.myData.month_name)}>X
-                            </button>
+                            </div>
                         
                 </div>
                 <Collapse in={this.state.detailed}>

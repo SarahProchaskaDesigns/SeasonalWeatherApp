@@ -34,12 +34,12 @@ class WeatherList extends Component {
                             <div className="pointer" onClick={() => this.props.sortTempHighs()}>Avg High (F)</div>
                             <div className="pointer" onClick={() => this.props.sortTempLows()}>Avg Low (F)</div>
                             <div className="pointer" onClick={() => this.props.sortRainSnow()}>Rain or Snow?</div>
-                            <div>Delete</div>
+                            <div> </div>
                             {/* <th><button onClick={() => this.closeTableRow('city', 'month')}>X</button></th> */}
                 </div> 
-                
+                <div className="weather-table">
                     {this.props.weather.map((item) => this.renderData(item))}
-                
+                </div>
             </div>
             
             

@@ -95,7 +95,7 @@ class SearchBar extends Component {
         }
         const selectivelyRenderStates = () => {
             if(this.state.activeCountry === "United States"){
-               return <SplitButton title={this.state.activeState} id='months-dropdown-menu'>{createDropDown(this.state.states, 'states')}</SplitButton>
+               return <DropdownButton className="search-element" title={this.state.activeState} id='months-dropdown-menu'>{createDropDown(this.state.states, 'states')}</DropdownButton>
             //    return <div>This should be the state dropdown</div>
         }
     }
@@ -103,12 +103,12 @@ class SearchBar extends Component {
         return (
             <div id="search-bar">
                 <form onSubmit={(event) => this.submitCityAndMonth(event)}>
-                    <SplitButton title={this.state.activeCountry} id='months-dropdown-menu'>{createDropDown(this.state.countries.map((countryObj) => 
-                    countryObj.name), 'countries')}</SplitButton>
+                    <DropdownButton className="search-element" title={this.state.activeCountry} id='months-dropdown-menu'>{createDropDown(this.state.countries.map((countryObj) => 
+                    countryObj.name), 'countries')}</DropdownButton>
                     {selectivelyRenderStates()}
-                    <input placeholder="City..." value={this.state.currentCity} onChange={(event) => { this.enterNewCity(event) }} />
-                    <SplitButton title={this.state.activeMonth} id='months-dropdown-menu'>{createDropDown(this.state.months, 'months')}</SplitButton>
-                    <button type="submit" >Search</button>
+                    <input className="search-element" placeholder="City..." value={this.state.currentCity} onChange={(event) => { this.enterNewCity(event) }} />
+                    <DropdownButton className="search-element" title={this.state.activeMonth} id='months-dropdown-menu'>{createDropDown(this.state.months, 'months')}</DropdownButton>
+                    <button className="search-button" type="submit" >Search</button>
                 </form>
             </div>
         )

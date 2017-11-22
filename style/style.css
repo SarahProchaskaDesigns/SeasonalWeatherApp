@@ -1,36 +1,164 @@
+
+body, html{
+    height: 100%;
+    background-image: url('../public/img/clouds-snow.png'),
+        url('../public/img/sun-clouds-rain.png'),
+        linear-gradient( #9fd1ed 40px, 220px, white);
+    background-repeat: no-repeat,
+        no-repeat,
+        no-repeat;
+    background-position: -30px -20px,
+        top -90px right -70px, 
+        top
+}
+/* SEARCH BAR STYLING */
+/* :not(:last-child) { styles } */
+#search-bar{
+    padding: 20px 0;
+    
+}
+#search-bar form{
+    display: flex;
+    justify-content: space-between;
+}
+.search-element{
+    color: #666666;
+    min-width: 120px;
+    box-shadow: 0 2px 2px 1px #DDDDDD;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+}
+.search-button{
+    color: #f55831;
+    font-weight: bold;
+    min-width: 60px;
+    background-color: #fff9d0;
+    box-shadow: 0 2px 2px 1px #DDDDDD;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+}
+.search-button:hover{
+    color: white;
+    background-color: #f55831;;
+}
+
+/* GOOGLE MAPS ELEMENT */
+.google-map-styling{
+    border-radius: 15px;
+    border: 7px solid white;
+    background-color: white;
+}
+.map-element{
+    width: 90%;
+    margin-left: 5%;
+    box-shadow: 0 3px 10px 3px #DDDDDD;
+}
+#map {
+    height: 380px;
+    width: 100%;
+    /* min-width: 400px; */
+    /* margin-left: 10%; */
+  }
+#maping-buttons{
+    display: flex;
+    justify-content: space-around;
+}
+.pan-to-words{
+    color: #929292;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9em;
+}
+.pan-to-words:hover{
+    color: #f55831;
+}
 .pointer{
     cursor:pointer
 }
 
+/* WEATHER LIST  */
+#weather-list{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 15px;
+    margin-top: 20px;
+}
 .table-title{
     display: flex;
+    color: #f55831;
+    font-weight: 600;
     /* justify-content: center; */
     border-bottom: 2px solid #666666;
 }
-.table-title div{
+/* .table-title div{
+    min-width: 17%;
+    display: flex;
+    justify-content: flex-start;
+} */
+.table-title > :nth-last-child(n+2){
     width: 17%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .table-row{
     display: flex; 
     padding: 20px 0;
     
 }
+.grey{
+    background-color: #f1f1f1;
+}
+.white{
+    background-color: white;
+}
 .tr-cell{
-    width: 17%;
+    
     display: flex;
+    /* min-width: 17%; */
+    
     /* justify-content: center; */
 }
-/* .table div{
-    padding: 5px 15px;
-} */
-th{
-    width: 30%;
+
+.table-row > :nth-last-child(n+3) {
+    font: 2em;
+    width: 17%;
 }
+.tr-cell:first-child{
+    padding-left: 10px;
+}
+.tr-cell:nth-last-child(2) {
+    width: 10%;
+}
+.delete-city-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid #929292; */
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #929292;
+    color: #ffd64a;
+}
+.delete-city-button:hover{
+    background-color: #ffd64a;
+    color: #ffffff
+}
+/* .table-row:last-child{
+    font: 2em;
+    margin-left: 6%;
+    width: 9%;
+} */
+/* th{
+    width: 30%;
+} */
+
+/* COLLAPSED DATA AND GRAPHS */
 .collapse-info{
     /* display: flex; */
     width: 50%;
+    padding: 10px 15px 25px 25px;
     /* margin-left: 30%; */
 }
 .flex-it{
@@ -39,23 +167,10 @@ th{
 .graph-data{
     width: 40%;
 }
-#search-bar{
-    padding: 20px 0;
-}
-#map {
-    height: 380px;
-    width: 80%;
-    /* min-width: 400px; */
-    margin-left: 10%;
-  }
-#maping-buttons{
-    display: flex;
-    justify-content: center;
-}
-.map {
+
+
+/* .map {
     height: 400px;
     width: 100%;
-  }
-  #weather-list{
-      padding: 20px 0;
-  }
+  } */
+ 

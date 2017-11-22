@@ -104,25 +104,25 @@ var allMarkers = [];
       }
 
     render() {
-      const mapStyle = {
-        width: 500,
-        height: 300,
-        border: '1px solid black'
-      };
+    //   const mapStyle = {
+    //     width: 500,
+    //     height: 300,
+    //     border: '1px solid black'
+    //   };
       
       return (
-          <div>
-        <div id="maping-buttons">
-            <button onClick={ () => this.panToLocation(DEFAULT_POSITION, 1)}>World View</button>
-          <button onClick={ () => this.panToLocation(EUROPE_POSITION, 4)}>Europe</button>
-          <button onClick={ () => this.panToLocation(UNITED_STATES_POSITION, 4)}>US</button>
-          <button onClick={ () => this.panToLocation(ASIA_POSITION, 3)}>Asia</button>
-          <button onClick={ () => this.panToLocation(AFRICA_POSITION, 3)}>Africa</button>
-          <button onClick={ () => this.panToLocation(OCEANIA_POSITION, 3)}>Oceania</button>
-          <button onClick={ () => this.panToLocation(SOUTH_AMERICA_POSITION, 3)}>South America</button>
-          <button onClick={ () => this.panToLocation(MIDDLE_EAST_POSITION, 4)}>Middle East</button>
+          <div className="google-map-styling map-element">
+        <div id="maping-buttons" >
+            <div className="pan-to-words pointer" onClick={ () => this.panToLocation(DEFAULT_POSITION, 1)}>World View</div>
+          <div className="pan-to-words pointer" onClick={ () => this.panToLocation(EUROPE_POSITION, 4)}>Europe</div>
+          <div className="pan-to-words pointer" onClick={ () => this.panToLocation(UNITED_STATES_POSITION, 4)}>US</div>
+          <div className="pan-to-words pointer" onClick={ () => this.panToLocation(ASIA_POSITION, 3)}>Asia</div>
+          <div className="pan-to-words pointer" onClick={ () => this.panToLocation(AFRICA_POSITION, 3)}>Africa</div>
+          <div className="pan-to-words pointer" onClick={ () => this.panToLocation(OCEANIA_POSITION, 3)}>Oceania</div>
+          <div className="pan-to-words pointer" onClick={ () => this.panToLocation(SOUTH_AMERICA_POSITION, 3)}>South America</div>
+          <div className="pan-to-words pointer" onClick={ () => this.panToLocation(MIDDLE_EAST_POSITION, 4)}>Middle East</div>
           </div>
-          <div ref="googleMap" id="map">I should be a map!</div>
+          <div ref="googleMap" id="map" className="google-map-styling">I should be a map!</div>
         </div>
       );
     }

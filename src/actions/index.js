@@ -25,7 +25,9 @@ export function deleteCity(city, month){
 }
 
 ////
+var row = 0;
 export function fetchWeather(city, state, countryName, countryCode, monthNumber, monthName){
+    
     if(countryCode === "US"){
         var url = `${ROOT_URL}${MY_API_KEY}/planner_${monthNumber}01${monthNumber}30/q/US/${state}/${city}.json`;
         var url2 = `${ROOT_URL}${MY_API_KEY}/conditions/q/US/${state}/${city}.json`;
@@ -44,7 +46,8 @@ export function fetchWeather(city, state, countryName, countryCode, monthNumber,
     const request = Promise.all([plannerRequest, conditionRequest]);
     // console.log("Sent request is ", request)
     // console.log("City is: ", city)
-
+    row += 1
+    console.log(row)
     return {
         type: FETCH_WEATHER,
         meta: {
@@ -52,6 +55,7 @@ export function fetchWeather(city, state, countryName, countryCode, monthNumber,
             country_name: countryName,
             state: state,
             month_name: monthName,
+            row: row,
             },
         payload: request
             // {
