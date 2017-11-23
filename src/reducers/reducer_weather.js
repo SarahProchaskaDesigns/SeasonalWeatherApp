@@ -50,6 +50,10 @@ export default function (state = [], action) {
     var newState = state.slice()
     switch (action.type) {
         case FETCH_WEATHER:
+            if(!action.payload[0].data.trip){
+                alert('Were not able to fetch seasonal weather data with that request. All fields are necessary. If you entered a city, try entering an airport code instead.')
+                return state
+            }
             var isDuplicate = false;
             for(var i = 0; i < state.length; i++){
                 if (state[i].myData.city_name === action.meta.city_name && state[i].myData.month_name === action.meta.month_name) {

@@ -29,6 +29,11 @@ body, html{
     border-radius: 5px;
     border: none;
 }
+.open>.dropdown-menu{
+    max-height: 300px;
+    overflow-x: auto;
+    width: 200px;
+}
 .search-button{
     color: #f55831;
     font-weight: bold;
@@ -112,6 +117,7 @@ body, html{
 .white{
     background-color: white;
 }
+
 .tr-cell{
     
     display: flex;
@@ -129,6 +135,18 @@ body, html{
 }
 .tr-cell:nth-last-child(2) {
     width: 10%;
+}
+.tr-cell:nth-last-child(2) {
+    color: #89c3e1;
+    font-weight: 600;
+}
+.tr-cell:nth-last-child(3) {
+    color: #326de4;
+    font-weight: 600;
+}
+.tr-cell:nth-last-child(4) {
+    color: #f55831;
+    font-weight: 600;
 }
 .delete-city-button{
     display: flex;

@@ -83,8 +83,12 @@ var allMarkers = [];
             lat: parseFloat(city.myData.latitude),
             lng: parseFloat(city.myData.longitude)
         }
-        var contentString = `${city.myData.city_name} in ${city.myData.month_name} is often ${city.cloud_cover.cond} with a ${parseInt(city.chance_of.chanceofsnowday.percentage) + parseInt(city.chance_of.chanceofrainday.percentage)}% chance of Rain or Snow.`
-
+        var cityName = city.myData.entered_city_name;
+        if(cityName.length <= 3){
+            cityName = city.myData.city_name
+        }
+        var contentString = `${cityName} in ${city.myData.month_name} is often ${city.cloud_cover.cond} with a ${parseInt(city.chance_of.chanceofsnowday.percentage) + parseInt(city.chance_of.chanceofrainday.percentage)}% chance of Rain or Snow.`
+        
         var infowindow = new google.maps.InfoWindow({
           content: contentString,
           maxWidth: 200

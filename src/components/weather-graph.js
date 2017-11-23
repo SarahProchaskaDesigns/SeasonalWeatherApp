@@ -26,7 +26,7 @@ class WeatherGraph extends Component{
                         'rgba(255, 255, 255, 0)',
                     ],
                     borderColor: [
-                        'rgba(255,99,132,1)'
+                        'rgba(245, 88, 49, 1)'
                     ],
                     borderWidth: 1
                 },
@@ -41,7 +41,7 @@ class WeatherGraph extends Component{
                         'rgba(255, 255, 255, 0)',
                     ],
                     borderColor: [
-                        'rgba(0, 0, 255,1)'
+                        'rgba(50, 109, 228, 1)'
                     ],
                     borderWidth: 1
                 }

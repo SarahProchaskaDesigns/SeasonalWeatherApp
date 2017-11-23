@@ -17,19 +17,21 @@ class WeatherDataRow extends Component{
         this.setState({detailed: !this.state.detailed})
     }
     render(){
-        var city = this.props.city
+        var city = this.props.city;
+        var cityName = city.myData.entered_city_name;
+        if(cityName.length <= 3){
+            cityName = city.myData.city_name
+        }
         return(
             <div className={city.myData.row % 2 ? 'white' : 'grey'}>
                 
                     <div className='table-row pointer' onClick={() => this.toggle()}>
-                
-                
-                        <WeatherData key={city.myData.city_name} data={city.myData.city_name} />
+                        <WeatherData key={city.myData.city_name} data={cityName} />
                         <WeatherData key={city.myData.country_name} data={city.myData.country_name} />
                         <WeatherData key={city.myData.month_name} data={city.myData.month_name} />
-                        <WeatherData key={city.temp_high.avg.F} data={city.temp_high.avg.F} />
-                        <WeatherData key={city.temp_low.avg.F} data={city.temp_low.avg.F} />
-                        <WeatherData key={city.airport_code} data={parseInt(city.chance_of.chanceofsnowday.percentage) + parseInt(city.chance_of.chanceofrainday.percentage)} />
+                        <WeatherData key={city.temp_high.avg.F} data={city.temp_high.avg.F} unit="F"/>
+                        <WeatherData key={city.temp_low.avg.F} data={city.temp_low.avg.F} unit="F"/>
+                        <WeatherData key={city.airport_code} data={parseInt(city.chance_of.chanceofsnowday.percentage) + parseInt(city.chance_of.chanceofrainday.percentage)} unit="%"/>
                         
                             <div className="pointer delete-city-button" 
                                 onClick={(e) => this.props.closeTableRow(city.myData.city_name, city.myData.month_name)}>X

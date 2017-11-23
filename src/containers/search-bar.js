@@ -103,10 +103,10 @@ class SearchBar extends Component {
         return (
             <div id="search-bar">
                 <form onSubmit={(event) => this.submitCityAndMonth(event)}>
-                    <DropdownButton className="search-element" title={this.state.activeCountry} id='months-dropdown-menu'>{createDropDown(this.state.countries.map((countryObj) => 
+                    <DropdownButton className="search-element scroll-menu" title={this.state.activeCountry} id='months-dropdown-menu'>{createDropDown(this.state.countries.map((countryObj) => 
                     countryObj.name), 'countries')}</DropdownButton>
                     {selectivelyRenderStates()}
-                    <input className="search-element" placeholder="City..." value={this.state.currentCity} onChange={(event) => { this.enterNewCity(event) }} />
+                    <input className="search-element" placeholder="City or Airport Code..." value={this.state.currentCity} onChange={(event) => { this.enterNewCity(event) }} />
                     <DropdownButton className="search-element" title={this.state.activeMonth} id='months-dropdown-menu'>{createDropDown(this.state.months, 'months')}</DropdownButton>
                     <button className="search-button" type="submit" >Search</button>
                 </form>

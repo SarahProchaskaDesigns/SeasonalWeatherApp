@@ -14,18 +14,21 @@ class WeatherSnowRainGraph extends Component{
                 labels: ["Rain", "Snow"],
                 datasets: [
                     {
-                    label: `Chances of Rain or Snow (%)`,
+                    label: `Chances of Rain or Snow(%)`,
                     data: [
                         this.props.data.chance_of.chanceofrainday.percentage, this.props.data.chance_of.chanceofsnowday.percentage
                         ],
                     backgroundColor: [
                         'rgba(255, 255, 255, 0)',
+                        
                     ],
                     borderColor: [
-                        'rgba(255,99,132,1)'
+                        'rgba(137, 195, 225, 1)',
+                        'rgba(132, 144, 152, 1)'
                     ],
                     borderWidth: 1
-                }
+                },
+                
             ]
             },
             options: {
